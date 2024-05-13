@@ -19,7 +19,7 @@ function MenuItemList() {
     const perPage = 3
   
  
-    let a
+   
 
 
   const menuItems = new MenuItems()
