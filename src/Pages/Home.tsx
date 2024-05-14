@@ -17,10 +17,12 @@ function Home() {
         </section>
 
         <StartComponent />
-        <section ref={mainRef}  id="main-section">
+        <section id="main-section">
            <MainComponent />
         </section>
-        <FooterComponent />
+        <section  id='contact-section'>
+          <FooterComponent />
+        </section>
  
     </div>
   )

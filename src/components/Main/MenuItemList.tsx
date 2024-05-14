@@ -4,7 +4,7 @@ import style from './Main.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import MenuItems, { IItem } from '../../models/Backet'
 
-
+import { BucketActionTypes } from '../../store/bucketReducer'
 
   
 
@@ -17,29 +17,23 @@ function MenuItemList() {
     let [page, setPage] = useState(1)
     let [totalPage, setTotalPage] = useState(1)
     const perPage = 3
-  
- 
-   
-
-
-  const menuItems = new MenuItems()
-
-
-  useEffect(() => 
-  
-    menuItems.fetchMenu(perPage, page, setTotalPage, setItemList, itemList)
-
-    ,[page])
-
+    const menuItems = new MenuItems()
     const dispatch = useDispatch()
 
+  useEffect(() => 
+    menuItems.fetchMenu(perPage, page, setTotalPage, setItemList, itemList)
+  
+    ,[page])
 
-    const getD = () => {
-      dispatch({type: "ADD_ITEM", payload: 1 })
-     
-      
-    }
+  
 
+
+  const addToBacket = (item: IItem) => {
+    dispatch({ type: BucketActionTypes.ADD_TO_BACKET, payload: item });
+    dispatch({type: BucketActionTypes.ADD_NUMBER, payload: 1})
+  }
+
+  
 
 
   return (
@@ -51,7 +45,7 @@ function MenuItemList() {
                 <img className={style.itemImg} src={item.avatar} />
                 <p>{item.first_name}</p>
                 <p>{item.last_name}</p>
-                <button onClick={() => getD()} className={style.buyBtn}>Add to backet</button>
+                <button onClick={() => addToBacket(item)} className={style.buyBtn}>Add to backet</button>
             </div>
           </div>
         ))}

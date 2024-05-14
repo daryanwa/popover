@@ -13,12 +13,19 @@ function HeaderComponent() {
   let [openModal, setOpenModal] = useState(false)
 
   const dispatch = useDispatch()
-  const addToBucket = useSelector((state: any) => state.action)
+  const addToBucket = useSelector((state: any) => state.count)
 
 
   const handleMenuClick = (e:any) => {
     e.preventDefault()
     let mainsection = document.getElementById('main-section')
+    if(mainsection){
+      mainsection.scrollIntoView()
+    }
+  }
+  const handleMenuClickAbout = (e:any) => {
+    e.preventDefault()
+    let mainsection = document.getElementById('contact-section')
     if(mainsection){
       mainsection.scrollIntoView()
     }
@@ -40,7 +47,7 @@ function HeaderComponent() {
         <ul className={style.ulBtn}>
             <li  className={style.liBtn} onClick={handleMenuClick}>Menu</li>
             <li className={style.liBtn}>About</li>
-            <li className={style.liBtn}>Contact</li>
+            <li className={style.liBtn } onClick={handleMenuClickAbout}>Contact</li>
         </ul>
        </div>
        <div className={style.buttonContainer}>

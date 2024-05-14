@@ -178,6 +178,37 @@ width: 90vh;
     box-shadow: 0px 0.3vh 6vh .5vh #000000;
     background-color: #fcd4d4;
     justify-content: center;
+    flex-direction: column;
 }
 
+.modalItemContainer{
+    /* justify-content: center; */
+    gap: 3vh;
+    align-items: center;
+    background-color: rgba(89, 88, 90, 0.212);
+    border-radius: 1vh;
+    width: 26vh;
+    display: flex;
+    flex-direction: row;
+    margin: 1vh 0 1vh 0;
+}
+.modalItemImg{
+    width: 7vh;
 
+    
+}
+
+.first_nameContainer{
+    width: 3vh;
+}
+
+.deleteBtn{
+    width: 2vh;
+    height: 3vh;
+    border-radius: 3vh;
+    margin-left: auto;
+    margin-right: auto;
+    justify-items: end;
+    cursor: pointer;
+    background-color: bisque;
+}

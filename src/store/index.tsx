@@ -1,16 +1,13 @@
 
-import { bucketReducer } from "./bucketReducer";
+// import { bucketReducer } from "./bucketReducer";
 import { combineReducers, legacy_createStore as createStore} from 'redux'
-import { insideBucketItem } from "./insideBucketItem";
+import { bucketReducer } from './bucketReducer'
+// import { insideBucketItem } from "./insideBucketItem";
 
 
-const rootReducer = combineReducers({
-    bucket: bucketReducer,
-    insideBucket: insideBucketItem
 
-})
 
- const store = createStore(rootReducer)
+ const store = createStore(bucketReducer)
 
 
 

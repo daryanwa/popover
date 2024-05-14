@@ -8,9 +8,9 @@ function Backet() {
   let [openModal, setOpenModal] = useState(false)
 
   const dispatch = useDispatch()
-  const addToBucket = useSelector((state: any) => state.action)
+  const addToBucket   = useSelector((state: any) => state.count)
 
-  
+
 
 
   return (
@@ -19,10 +19,10 @@ function Backet() {
           {openModal ? <ModalBacket /> : ''}
         </div>    
         <div className={style.basketContainer} onClick={() => setOpenModal(!openModal)}>
-        {addToBucket <= 0 ?  <img  className={style.basket} src={basket} /> 
+        {addToBucket  <= 0 ?  <img  className={style.basket} src={basket} /> 
           :  <div>
           <div className={style.backetNum}>
-           {addToBucket}
+           {addToBucket }
             </div> 
            <img  className={style.basket} src={basket} />
           </div>
