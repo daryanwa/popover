@@ -29,21 +29,6 @@ const ModalBacket = () => {
     }
   };
 
-  // const closeModalClick = (e:any) => {
-  //   if(myref.current && !myref.current.contains(e.target as Node)){
-     
-  //     dispatch({ type: BucketActionTypes.OPEN_MODAL, open: true });
-  //   }
-  //   // dispatch({ type:  BucketActionTypes.CLOSE_MODAL , open: true });
-  // }
-
-
-  // useEffect(() => {
-  //   document.addEventListener('mousedown', closeModalClick);
-  //   return () => {
-  //     document.removeEventListener('mousedown', closeModalClick);
-  //   };
-  // }, []);
 
 
 

@@ -83,15 +83,15 @@ console.log(myref)
         <img  className={style.basket} src={search} />
      
         <div >
-        <div className={style.modalDivContainer}>
+        {/* <div className={style.modalDivContainer}>
           {openCloseModal ?
             <div ref={myref}>
                 <ModalBacket /> 
             </div> : ' '
           }
            
-             </div> 
-          {addToBucket <= 0 ?  <img   className={style.basket} src={basket}
+             </div>  */}
+          {/* {addToBucket <= 0 ?  <img   className={style.basket} src={basket}
            /> 
           :  <div>
           <div className={style.backetNum}>
@@ -102,7 +102,7 @@ console.log(myref)
               <img onClick={() => openModal()}  className={style.basket} src={basket} />
            
           </div>
-          }
+          } */}
        
         
           </div>
