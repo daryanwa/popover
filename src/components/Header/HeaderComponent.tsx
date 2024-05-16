@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 // import 'bootstrap/dist/css/bootstrap.min.css'
 import style from './Header.module.css'
@@ -7,14 +7,16 @@ import basket from '../../images/basket.png'
 import search from '../../images/search.png'
 import { useDispatch, useSelector } from 'react-redux'
 import ModalBacket from '../Main/ModalBacket'
+import { BucketActionTypes } from '../../store/bucketReducer'
 
 function HeaderComponent() {
 
-  let [openModal, setOpenModal] = useState(false)
+  // let [openModal, setOpenModal] = useState(false)
 
   const dispatch = useDispatch()
   const addToBucket = useSelector((state: any) => state.count)
-
+  const openCloseModal = useSelector((state:any) => state.open)
+  const myref = useRef<HTMLDivElement>(null)
 
   const handleMenuClick = (e:any) => {
     e.preventDefault()
@@ -31,6 +33,32 @@ function HeaderComponent() {
     }
   }
 
+
+
+
+  useEffect(() => {
+    const closeModalClick = (e: MouseEvent) => {
+      if (myref.current && !myref.current.contains(e.target as Node)) {
+        dispatch({ type: BucketActionTypes.CLOSE_MODAL });
+      }
+    };
+
+    document.addEventListener('mousedown', closeModalClick);
+    return () => {
+      document.removeEventListener('mousedown', closeModalClick);
+    };
+  }, [dispatch]);
+
+  const openModal = () => {
+    if(openCloseModal){
+
+      dispatch({ type: BucketActionTypes.OPEN_MODAL });
+    }
+    dispatch({ type: BucketActionTypes.CLOSE_MODAL });
+    
+  };
+
+console.log(myref)
 
   return (
     <header className={style.headerContainer}>
@@ -54,9 +82,14 @@ function HeaderComponent() {
         
         <img  className={style.basket} src={search} />
      
-        <div onClick={() => setOpenModal(!openModal)}>
+        <div >
         <div className={style.modalDivContainer}>
-             {openModal ? <ModalBacket /> : ''}
+          {openCloseModal ?
+            <div ref={myref}>
+                <ModalBacket /> 
+            </div> : ' '
+          }
+           
              </div> 
           {addToBucket <= 0 ?  <img   className={style.basket} src={basket}
            /> 
@@ -66,7 +99,7 @@ function HeaderComponent() {
            
             </div> 
            
-              <img onClick={() => setOpenModal(!openModal)}  className={style.basket} src={basket} />
+              <img onClick={() => openModal()}  className={style.basket} src={basket} />
            
           </div>
           }

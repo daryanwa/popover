@@ -183,7 +183,7 @@ width: 90vh;
 
 .modalItemContainer{
     /* justify-content: center; */
-    gap: 3vh;
+    gap: 2vh;
     align-items: center;
     background-color: rgba(89, 88, 90, 0.212);
     border-radius: 1vh;
@@ -198,6 +198,13 @@ width: 90vh;
     
 }
 
+.bucketValue{
+    display: flex;
+    width: 1vh;
+    justify-content: center;
+    align-items: center;
+}
+
 .first_nameContainer{
     width: 3vh;
 }
@@ -206,9 +213,10 @@ width: 90vh;
     width: 2vh;
     height: 3vh;
     border-radius: 3vh;
-    margin-left: auto;
-    margin-right: auto;
+    /* margin-left: auto;
+    margin-right: auto; */
     justify-items: end;
     cursor: pointer;
     background-color: bisque;
 }
+
