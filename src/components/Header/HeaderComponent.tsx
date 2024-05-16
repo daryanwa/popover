@@ -11,12 +11,10 @@ import { BucketActionTypes } from '../../store/bucketReducer'
 
 function HeaderComponent() {
 
-  // let [openModal, setOpenModal] = useState(false)
-
   const dispatch = useDispatch()
   const addToBucket = useSelector((state: any) => state.count)
-  const openCloseModal = useSelector((state:any) => state.open)
-  const myref = useRef<HTMLDivElement>(null)
+  const openCloseModal = useSelector((state: any) => state.open);
+  const myref = useRef<HTMLDivElement>(null);
 
   const handleMenuClick = (e:any) => {
     e.preventDefault()
@@ -35,7 +33,6 @@ function HeaderComponent() {
 
 
 
-
   useEffect(() => {
     const closeModalClick = (e: MouseEvent) => {
       if (myref.current && !myref.current.contains(e.target as Node)) {
@@ -50,13 +47,16 @@ function HeaderComponent() {
   }, [dispatch]);
 
   const openModal = () => {
-    if(openCloseModal){
 
-      dispatch({ type: BucketActionTypes.OPEN_MODAL });
+
+    if (myref.current) {
+      dispatch({ type: BucketActionTypes.CLOSE_MODAL });
     }
-    dispatch({ type: BucketActionTypes.CLOSE_MODAL });
-    
+    dispatch({ type: BucketActionTypes.OPEN_MODAL });
+  
   };
+
+  
 
 console.log(myref)
 
