@@ -16,13 +16,14 @@ function MenuItemList() {
     let [photo, setPhoto] = useState([])
     // let [itemList, setItemList] = useState<IItem[]>([])
     let [page, setPage] = useState(1)
-    let [totalPage, setTotalPage] = useState(1)
-    const perPage = 3
+    // let [totalPage, setTotalPage] = useState(1)
+    const perPage = 9
     // const menuItems = new MenuItems() 
     // **FETCH
     // const localItems = new DataMenuItems(data.id, data.name, data.category, data.price, data.describe, data.image)
     const localItems = new DataMenuItems()
     let local = localItems.fetchLocalData()
+    
     
 
     const dispatch = useDispatch()

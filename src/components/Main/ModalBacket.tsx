@@ -3,7 +3,7 @@ import style from './Main.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import store from '../../store';
 import { BucketActionTypes } from '../../store/bucketReducer';
-import { IItem } from '../../models/Backet';
+import { DataMenuItems} from '../../models/Backet';
 import { current } from '@reduxjs/toolkit';
 
 
@@ -24,8 +24,8 @@ const ModalBacket = () => {
   };
 
 
-  const addToBacket = (item: IItem) => {
-    const existingItem = bucketItems.find((bucketItem: IItem) => bucketItem.id === item.id);
+  const addToBacket = (item: DataMenuItems) => {
+    const existingItem = bucketItems.find((bucketItem: DataMenuItems) => bucketItem.id === item.id);
     if (existingItem) {
         dispatch({ type: BucketActionTypes.ADD_NUMBER, payload: item.id });
     } else {
@@ -42,9 +42,9 @@ const ModalBacket = () => {
 
     <div   className={style.modalContainer}>
       {bucketItems.map((item: any, index: number) => (
-        <div className={style.modalItemContainer} key={index}>
-          <img className={style.modalItemImg} src={item.avatar} alt="Avatar" />
-          <p className={style.first_nameContainer}>{item.first_name}</p>
+        <div className={style.modalItemContainer} key={item.id}>
+          <img className={style.modalItemImg} src={item.image} alt="Avatar" />
+          <p className={style.first_nameContainer}>{item.name}</p>
           <button className={style.deleteBtn} onClick={() => deleteItem(item)}>-</button>
           <div className={style.bucketValue}>{bucketValue}</div>
           <button className={style.deleteBtn} onClick={() => addToBacket(item)}>+</button>
