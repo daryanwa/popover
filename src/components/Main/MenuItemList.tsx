@@ -13,38 +13,12 @@ function MenuItemList() {
 
 
 
-    let [photo, setPhoto] = useState([])
-    // let [itemList, setItemList] = useState<IItem[]>([])
-    let [page, setPage] = useState(1)
-    // let [totalPage, setTotalPage] = useState(1)
-    const perPage = 9
-    // const menuItems = new MenuItems() 
-    // **FETCH
-    // const localItems = new DataMenuItems(data.id, data.name, data.category, data.price, data.describe, data.image)
+    let [page, setPage] = useState(9)
+
     const localItems = new DataMenuItems()
     let local = localItems.fetchLocalData()
-    
-    
-
     const dispatch = useDispatch()
-
-  // useEffect(() => 
-  //   menuItems.fetchMenu(perPage, page, setTotalPage, setItemList, itemList)
-  
-  //   ,[page])
-//*FETCH */
-  
-    // const existingItem = state.items.find(item => item.id === action.payload.id)
-
-  // const addToBacket = (item: IItem) => {
-  //   if(menuItems.id === item.id){
-
-  //     dispatch({type: BucketActionTypes.ADD_NUMBER, payload: 1})
-  //   }else{
-
-  //     dispatch({ type: BucketActionTypes.ADD_TO_BACKET, payload: item });
-  //   }
-  // }   
+    const perPage = 9
   const addToBacket = (item:ILocalData ) => {
     if(localItems.id === item.id){
 
@@ -55,25 +29,15 @@ function MenuItemList() {
     }
   }   
 
+  const loadMore = () => {
+    setPage(page + 9)
+    }
   
-
-
-  
-  // const addToBacket = (item: IItem) => {
-  //   if(item.id){
-
-  //     dispatch({type: BucketActionTypes.ADD_NUMBER, payload: 1})
-  //   }
-  //   dispatch({ type: BucketActionTypes.ADD_TO_BACKET, payload: item });
-  // }
-
-  
-
 
   return (
     <div>
         <div className={style.itemListContainer}>
-        {local.map((item:ILocalData) => (
+        {local.slice(0, page).map((item:ILocalData) => (
           <div  key={item.id}>
             <div className={style.menuListContainer}>
                 <img className={style.itemImg} src={item.image} />
@@ -85,7 +49,7 @@ function MenuItemList() {
         ))}
       </div>
       <div className={style.btnContainer}>
-        {page !== perPage + 1 && <button className={style.loadMore} onClick={() => setPage(page + 1)}>Load more</button>}
+        {page !== perPage + 1 && <button className={style.loadMore} onClick={() => loadMore()}>Load more</button>}
       </div>
      
     </div>

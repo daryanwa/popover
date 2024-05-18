@@ -41,14 +41,15 @@ const ModalBacket = () => {
  
 
     <div   className={style.modalContainer}>
-      {bucketItems.map((item: any, index: number) => (
+      {bucketItems.map((item: any) => (
         <div className={style.modalItemContainer} key={item.id}>
+          
           <img className={style.modalItemImg} src={item.image} alt="Avatar" />
           <p className={style.first_nameContainer}>{item.name}</p>
           <button className={style.deleteBtn} onClick={() => deleteItem(item)}>-</button>
           <div className={style.bucketValue}>{bucketValue}</div>
           <button className={style.deleteBtn} onClick={() => addToBacket(item)}>+</button>
-          
+        
         </div>
       ))}
       {bucketItems.length <= 0 ? 'Bucket is empty' :

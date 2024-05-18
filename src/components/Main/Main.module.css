@@ -96,6 +96,7 @@ width: 90vh;
     border-radius: 3vh;
     cursor: pointer;
     font-size: 1.5vh;
+    margin-bottom: 3vh;
 }
 
 
@@ -181,6 +182,8 @@ width: 90vh;
     justify-content: center;
     flex-direction: column;
 }
+
+
 
 .modalItemContainer{
     /* justify-content: center; */
