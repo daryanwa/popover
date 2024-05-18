@@ -16,6 +16,7 @@ const ModalBacket = () => {
 
 
   const deleteItem = (item: any) => {
+
    
     dispatch({ type: BucketActionTypes.MINUS_NUMBER, payload: item.id});
     if (bucketValue <= 1) {
@@ -28,10 +29,10 @@ const ModalBacket = () => {
     const existingItem = bucketItems.find((bucketItem: DataMenuItems) => bucketItem.id === item.id);
     if (existingItem) {
         dispatch({ type: BucketActionTypes.ADD_NUMBER, payload: item.id });
-    } else {
-        const newItem = { ...item, count: 1 }; // Убедитесь, что count не undefined
-        dispatch({ type: BucketActionTypes.ADD_TO_BACKET, payload: newItem });
     }
+      
+        dispatch({ type: BucketActionTypes.ADD_TO_BACKET, payload: item });
+    
 };
 
 
