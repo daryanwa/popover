@@ -1,12 +1,43 @@
-import { IItem } from "../models/Backet";
-
+// import { IItem } from "../models/Backet";
+import { ILocalData } from "../models/Backet";
 
 
 
 export interface AddToBasketAction {
-    type: BucketActionTypes;
-    payload: IItem;
+    type: BucketActionTypes.ADD_TO_BACKET;
+    payload: ILocalData;
 }
+
+export interface DeleteFromBasketAction {
+    type: BucketActionTypes.DELETE_FROM_BACKET;
+    payload: number;
+}
+
+export interface AddNumberAction {
+    type: BucketActionTypes.ADD_NUMBER;
+    payload: number;
+}
+
+export interface MinusNumberAction {
+    type: BucketActionTypes.MINUS_NUMBER;
+    payload: number;
+}
+
+export interface OpenModalAction {
+    type: BucketActionTypes.OPEN_MODAL;
+}
+
+export interface CloseModalAction {
+    type: BucketActionTypes.CLOSE_MODAL;
+}
+
+export type BucketActions =
+    | AddToBasketAction
+    | DeleteFromBasketAction
+    | AddNumberAction
+    | MinusNumberAction
+    | OpenModalAction
+    | CloseModalAction;
 
 export enum BucketActionTypes {
     ADD_TO_BACKET = "ADD_TO_BACKET",
@@ -15,26 +46,21 @@ export enum BucketActionTypes {
     MINUS_NUMBER = "MINUS_NUMBER",
     OPEN_MODAL = "OPEN_MODAL",
     CLOSE_MODAL = "CLOSE_MODAL",
-
 }
 
-
-
-interface IBucketState  {
-    items: IItem[] ;
-    count: number
-    open: boolean
-    
+interface IBucketState {
+    items: ILocalData[];
+    count: number;
+    open: boolean;
 }
 
 const defaultState: IBucketState = {
     items: [],
     count: 1,
     open: false
-}
-type Action  = AddToBasketAction & { count?: number };
+};
 
-export const bucketReducer = (state: IBucketState = defaultState, action: Action):IBucketState => {
+export const bucketReducer = (state: IBucketState = defaultState, action: BucketActions):IBucketState => {
     switch(action.type){
         case BucketActionTypes.ADD_TO_BACKET: 
             return {...state, items: [...state.items, action.payload] }
