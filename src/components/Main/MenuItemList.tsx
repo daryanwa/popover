@@ -28,11 +28,11 @@ function MenuItemList() {
       dispatch({ type: BucketActionTypes.ADD_TO_BACKET, payload: item });
     }
   }   
-
+  
   const loadMore = () => {
     setPage(page + 9)
-    }
-  
+  }
+
 
   return (
     <div>
