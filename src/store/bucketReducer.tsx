@@ -19,8 +19,9 @@ export enum BucketActionTypes {
 }
 
 
-interface IBucketState {
-    items: IItem[];
+
+interface IBucketState  {
+    items: IItem[] ;
     count: number
     open: boolean
     
@@ -28,15 +29,15 @@ interface IBucketState {
 
 const defaultState: IBucketState = {
     items: [],
-    count: 0,
+    count: 1,
     open: false
 }
 type Action  = AddToBasketAction & { count?: number };
 
 export const bucketReducer = (state: IBucketState = defaultState, action: Action):IBucketState => {
     switch(action.type){
-        case BucketActionTypes.ADD_TO_BACKET:
-            return {...state, items: [...state.items, action.payload]}
+        case BucketActionTypes.ADD_TO_BACKET: 
+            return {...state, items: [...state.items, action.payload] }
         case BucketActionTypes.DELETE_FROM_BACKET: 
             return {...state, items: state.items.filter((item) => item.id !== action.payload )}
         case BucketActionTypes.ADD_NUMBER:
@@ -47,6 +48,7 @@ export const bucketReducer = (state: IBucketState = defaultState, action: Action
             return {...state, open: true}
         case BucketActionTypes.CLOSE_MODAL:
             return {...state, open: false}
+            
         default:
             return state
     }

@@ -12,11 +12,12 @@ const ModalBacket = () => {
   const dispatch = useDispatch();
   const bucketItems = useSelector((state: any) => state.items);
   const bucketValue = useSelector((state: any) => state.count);
-  const openCloseModal = useSelector((state:any) => state.open)
+
 
 
   const deleteItem = (item: any) => {
-    dispatch({ type: BucketActionTypes.MINUS_NUMBER, payload: 1 });
+   
+    dispatch({ type: BucketActionTypes.MINUS_NUMBER, payload: item.id});
     if (bucketValue <= 1) {
       dispatch({ type: BucketActionTypes.DELETE_FROM_BACKET, payload: item.id });
     }
@@ -24,12 +25,14 @@ const ModalBacket = () => {
 
 
   const addToBacket = (item: IItem) => {
-    if (item.id) {
-      dispatch({ type: BucketActionTypes.ADD_NUMBER, payload: item });
+    const existingItem = bucketItems.find((bucketItem: IItem) => bucketItem.id === item.id);
+    if (existingItem) {
+        dispatch({ type: BucketActionTypes.ADD_NUMBER, payload: item.id });
+    } else {
+        const newItem = { ...item, count: 1 }; // Убедитесь, что count не undefined
+        dispatch({ type: BucketActionTypes.ADD_TO_BACKET, payload: newItem });
     }
-  };
-
-
+};
 
 
 

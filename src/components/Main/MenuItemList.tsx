@@ -26,12 +26,24 @@ function MenuItemList() {
     ,[page])
 
   
-
+    // const existingItem = state.items.find(item => item.id === action.payload.id)
 
   const addToBacket = (item: IItem) => {
-    dispatch({ type: BucketActionTypes.ADD_TO_BACKET, payload: item });
-    dispatch({type: BucketActionTypes.ADD_NUMBER, payload: 1})
+    if(menuItems.id === item.id){
+
+      dispatch({type: BucketActionTypes.ADD_NUMBER, payload: 1})
+    }else{
+
+      dispatch({ type: BucketActionTypes.ADD_TO_BACKET, payload: item });
+    }
   }
+  // const addToBacket = (item: IItem) => {
+  //   if(item.id){
+
+  //     dispatch({type: BucketActionTypes.ADD_NUMBER, payload: 1})
+  //   }
+  //   dispatch({ type: BucketActionTypes.ADD_TO_BACKET, payload: item });
+  // }
 
   
 

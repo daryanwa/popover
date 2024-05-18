@@ -12,16 +12,20 @@ export interface IItem {
     first_name?: string
     last_name?: string
     avatar?: string
+    count?: number
   }
   
 
+
+
 export default class MenuItems implements IMenuProps {
 
-    id?: string;
+    id?: string ;
     email?: string;
     first_name?: string;
     last_name?: string;
     avatar?: string;
+    count?: number;
 
 
 
@@ -38,11 +42,10 @@ export default class MenuItems implements IMenuProps {
 }
 
 
-export class InBacketItems extends MenuItems {
-    
-    backetItems(id:string, email:string, first_name:string, last_name:string, avatar:string) {
-        
-    }
+class DataMenuItems extends MenuItems {
+
+
 
 }
+
 
