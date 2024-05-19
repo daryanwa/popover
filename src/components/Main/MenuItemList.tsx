@@ -43,6 +43,7 @@ function MenuItemList() {
                 <img className={style.itemImg} src={item.image} />
                 <p>{item.name}</p>
                 <p>{item.describe}</p>
+                <p style={{fontSize:'2vh'}}>{item.price}$</p>
                 <button onClick={() => addToBacket(item)} className={style.buyBtn}>Add to backet</button>
             </div>
           </div>

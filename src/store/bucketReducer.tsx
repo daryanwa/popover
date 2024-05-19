@@ -94,17 +94,6 @@ export const bucketReducer = (state: IBucketState = defaultState, action: Bucket
                 return {
                     ...state, count: action.payload.count
                 }
-            //     const existingItem = state.items.find(item => item.id === action.payload.id);
-            //     if(existingItem){
-               
-            //         return {
-            //             ...state,
-            //             count: existingItem.count 
-            //         }
-            //     }else{
-            //         return state
-            //     }
-            // }
 
              
 
@@ -115,26 +104,7 @@ export const bucketReducer = (state: IBucketState = defaultState, action: Bucket
                 }else{
                     return state
                 }
-            //     if (existingItem) {
-            //         if (existingItem.count > 1) {
-            //             return {
-            //                 ...state,
-            //                 items: state.items.map(item =>
-            //                     item.id === action.payload.id
-            //                         ? { ...item, count: item.count - 1 }
-            //                         : item
-            //                 )
-            //             };
-            //         } else {
-            //             return {
-            //                 ...state,
-            //                 items: state.items.filter(item => item.id !== action.payload.id)
-            //             };
-            //         }
-            //     } else {
-            //         return state;  
-            //     }
-            // }
+
         case BucketActionTypes.OPEN_MODAL:
             return {...state, open: true}
         case BucketActionTypes.CLOSE_MODAL:

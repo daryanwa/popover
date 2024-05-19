@@ -62,7 +62,7 @@ width: 90vh;
 
 .itemImg{
     width: 15vh;
-    transition: transform 1s;
+    transition: transform 0.4s;
 }
 .itemImg:hover{
     transform: scale(1.1);
@@ -221,7 +221,7 @@ width: 90vh;
 
 .first_nameContainer{
     width: 3vh;
-    margin-right: 6vh;
+    margin-right: 2vh;
     margin-left: 4vh;
 }
 
