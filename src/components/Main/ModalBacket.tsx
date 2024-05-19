@@ -63,7 +63,7 @@ const totalPos = () => {
   return total
 }
 
-
+console.log(bucketValue)
 
 console.log(totalPos())
 
@@ -76,7 +76,7 @@ console.log(totalPos())
           
           <img className={style.modalItemImg} src={item.image} alt="Avatar" />
           <p className={style.first_nameContainer}>{item.name}</p>
-          <p style={{fontSize:'2vh'}}>{item.price}$</p>
+          <p style={{fontSize:'2vh'}}>{ item.price * item.count}$</p>
           <button className={style.deleteBtn} onClick={() => deleteItem(item)}>-</button>
           <div className={style.bucketValue}>{item.count}</div>
           <button className={style.deleteBtn} onClick={() => addToBacket(item)}>+</button>
@@ -86,7 +86,7 @@ console.log(totalPos())
       {bucketItems.length <= 0 ? 'Bucket is empty' :
         <div>
           <p>Total position: {totalPos()}</p>
-          <p>Price: {price()} $</p>
+          <p>Price: {price() * totalPos()} $</p>
           <button className={style.buyBtn}>Checkout</button>
         </div>
       }
