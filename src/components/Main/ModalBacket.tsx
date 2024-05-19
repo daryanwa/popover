@@ -26,12 +26,14 @@ const ModalBacket = () => {
 
 
   const addToBacket = (item: DataMenuItems) => {
-    const existingItem = bucketItems.find((bucketItem: DataMenuItems) => bucketItem.id === item.id);
+    const existingItem = bucketItems.find((bucketItem: DataMenuItems) => bucketItem.id === item.id && bucketItems);
     if (existingItem) {
         dispatch({ type: BucketActionTypes.ADD_NUMBER, payload: item.id });
+    }else{
+
+      dispatch({ type: BucketActionTypes.ADD_TO_BACKET, payload: item });
     }
       
-        dispatch({ type: BucketActionTypes.ADD_TO_BACKET, payload: item });
     
 };
 

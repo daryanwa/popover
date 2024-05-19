@@ -1,4 +1,5 @@
 // import { IItem } from "../models/Backet";
+import { count } from "console";
 import { ILocalData } from "../models/Backet";
 
 
@@ -60,16 +61,37 @@ const defaultState: IBucketState = {
     open: false
 };
 
+
 export const bucketReducer = (state: IBucketState = defaultState, action: BucketActions):IBucketState => {
     switch(action.type){
         case BucketActionTypes.ADD_TO_BACKET: 
-            return {...state, items: [...state.items, action.payload] }
+        const existingItem = state.items.find(item => item.id === action.payload.id);
+        if (existingItem) {
+            return {
+                ...state,
+                items: state.items.map(item => 
+                    item.id === action.payload.id 
+                        ? { ...item, count: item.count + 1 } 
+                        : item
+                )
+            };
+        } else {
+            return {
+                ...state,
+                items: [...state.items, { ...action.payload, count: 1 }]
+            };
+        }
+            // это надо разобрать потом
+        // case BucketActionTypes.ADD_TO_BACKET: 
+        //     return {...state, items: [...state.items, action.payload] }
         case BucketActionTypes.DELETE_FROM_BACKET: 
             return {...state, items: state.items.filter((item) => item.id !== action.payload )}
         case BucketActionTypes.ADD_NUMBER:
-            return{...state ,count:  state.count + 1}
+            return{...state , count: state.count + 1}
+        // case BucketActionTypes.ADD_NUMBER:
+        //     return{...state ,count:  state.count + 1}
         case BucketActionTypes.MINUS_NUMBER: 
-            return {...state, count: state.count - 1}
+            return {...state, count: state.count - 1 === 0 ? state.count : 1 }
         case BucketActionTypes.OPEN_MODAL:
             return {...state, open: true}
         case BucketActionTypes.CLOSE_MODAL:

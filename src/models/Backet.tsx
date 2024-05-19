@@ -17,13 +17,17 @@ export interface IItem {
 
 
 export interface ILocalData {
-   
+    count: number
     id: number
     name: string
     category: string
     price: number
     describe: string
     image: string
+}
+
+export interface ICount{
+    count: number
 }
   
 
@@ -33,7 +37,7 @@ interface IDataProps extends ILocalData{
 }
 
 export default class MenuItems implements IMenuProps {
-
+  
     id?: string ;
     email?: string;
     first_name?: string;
@@ -60,6 +64,9 @@ export class DataMenuItems  implements IDataProps {
     price!: number
     describe!: string
     image!: string
+    count!: number
+
+    
 
     fetchLocalData() : ILocalData[]{
         return data.map((item:ILocalData) => ({
@@ -69,6 +76,7 @@ export class DataMenuItems  implements IDataProps {
             price: item.price,
             describe: item.describe,
             image: item.image,
+            count: item.count
         }));
     }
 
