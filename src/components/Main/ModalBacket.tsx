@@ -5,6 +5,7 @@ import store from '../../store';
 import { BucketActionTypes } from '../../store/bucketReducer';
 import { DataMenuItems} from '../../models/Backet';
 import { current } from '@reduxjs/toolkit';
+import { data } from '../../services/data';
 
 
 
@@ -38,10 +39,33 @@ const ModalBacket = () => {
     
 };
 
-console.log(bucketItems)
-console.log(bucketValue)
+useEffect(() => {
+  // console.log('bucketItems', bucketItems);
+  // console.log('bucketValue', bucketValue);
+}, [bucketItems, bucketValue]);
 
 
+let atributes = bucketItems.map((item: DataMenuItems) => item.price)
+
+const price = () => {
+  let sum = 0
+  for(let key of atributes){
+    sum+=key
+  }
+return sum
+}
+
+const totalPos = () => {
+  let total = 0
+  for(let key of bucketItems){
+    total += key.count
+  }
+  return total
+}
+
+
+
+console.log(totalPos())
 
   return (
  
@@ -61,8 +85,8 @@ console.log(bucketValue)
       ))}
       {bucketItems.length <= 0 ? 'Bucket is empty' :
         <div>
-          <p>Total position: {bucketValue}</p>
-          <p>Price: {bucketValue} $</p>
+          <p>Total position: {totalPos()}</p>
+          <p>Price: {price()} $</p>
           <button className={style.buyBtn}>Checkout</button>
         </div>
       }
