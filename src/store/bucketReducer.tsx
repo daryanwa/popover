@@ -1,6 +1,7 @@
 // import { IItem } from "../models/Backet";
 import { count } from "console";
 import { ILocalData } from "../models/Backet";
+import { data } from "../services/data";
 
 
 
@@ -16,12 +17,12 @@ export interface DeleteFromBasketAction {
 
 export interface AddNumberAction {
     type: BucketActionTypes.ADD_NUMBER;
-    payload: number;
+    payload: ILocalData;
 }
 
 export interface MinusNumberAction {
     type: BucketActionTypes.MINUS_NUMBER;
-    payload: number;
+    payload: ILocalData;
 }
 
 export interface OpenModalAction {
@@ -64,34 +65,76 @@ const defaultState: IBucketState = {
 
 export const bucketReducer = (state: IBucketState = defaultState, action: BucketActions):IBucketState => {
     switch(action.type){
-        case BucketActionTypes.ADD_TO_BACKET: 
-        const existingItem = state.items.find(item => item.id === action.payload.id);
-        if (existingItem) {
-            return {
-                ...state,
-                items: state.items.map(item => 
-                    item.id === action.payload.id 
-                        ? { ...item, count: item.count + 1 } 
-                        : item
-                )
-            };
-        } else {
-            return {
-                ...state,
-                items: [...state.items, { ...action.payload, count: 1 }]
-            };
+        case BucketActionTypes.ADD_TO_BACKET: {
+            const existingItem = state.items.find(item => item.id === action.payload.id);
+            if (existingItem) {
+                return {
+                    ...state,
+                    items: state.items.map(item =>
+                        item.id === action.payload.id
+                            ? { ...item, count: item.count + 1 }
+                            : item
+                    )
+                };
+            } else {
+                return {
+                    ...state,
+                    items: [...state.items, { ...action.payload, count: 1 }]
+                };
+            }
         }
-            // это надо разобрать потом
-        // case BucketActionTypes.ADD_TO_BACKET: 
-        //     return {...state, items: [...state.items, action.payload] }
-        case BucketActionTypes.DELETE_FROM_BACKET: 
-            return {...state, items: state.items.filter((item) => item.id !== action.payload )}
-        case BucketActionTypes.ADD_NUMBER:
-            return{...state , count: state.count + 1}
-        // case BucketActionTypes.ADD_NUMBER:
-        //     return{...state ,count:  state.count + 1}
-        case BucketActionTypes.MINUS_NUMBER: 
-            return {...state, count: state.count - 1 === 0 ? state.count : 1 }
+         
+            case BucketActionTypes.DELETE_FROM_BACKET: {
+                return {
+                    ...state,
+                    items: state.items.filter((item) => item.id !== action.payload)
+                };
+            }
+            case BucketActionTypes.ADD_NUMBER: 
+                return {
+                    ...state, count: action.payload.count
+                }
+            //     const existingItem = state.items.find(item => item.id === action.payload.id);
+            //     if(existingItem){
+               
+            //         return {
+            //             ...state,
+            //             count: existingItem.count 
+            //         }
+            //     }else{
+            //         return state
+            //     }
+            // }
+
+             
+
+            case BucketActionTypes.MINUS_NUMBER: 
+                const existingItem = state.items.find(item => item.id === action.payload.id);
+                if(existingItem){
+                    return {...state, count: state.count - 1}
+                }else{
+                    return state
+                }
+            //     if (existingItem) {
+            //         if (existingItem.count > 1) {
+            //             return {
+            //                 ...state,
+            //                 items: state.items.map(item =>
+            //                     item.id === action.payload.id
+            //                         ? { ...item, count: item.count - 1 }
+            //                         : item
+            //                 )
+            //             };
+            //         } else {
+            //             return {
+            //                 ...state,
+            //                 items: state.items.filter(item => item.id !== action.payload.id)
+            //             };
+            //         }
+            //     } else {
+            //         return state;  
+            //     }
+            // }
         case BucketActionTypes.OPEN_MODAL:
             return {...state, open: true}
         case BucketActionTypes.CLOSE_MODAL:

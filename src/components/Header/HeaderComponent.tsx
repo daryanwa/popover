@@ -58,7 +58,7 @@ function HeaderComponent() {
 
   
 
-console.log(myref)
+
 
   return (
     <header className={style.headerContainer}>

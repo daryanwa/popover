@@ -12,23 +12,38 @@ const ModalBacket = () => {
   const dispatch = useDispatch();
   const bucketItems = useSelector((state: any) => state.items);
   const bucketValue = useSelector((state: any) => state.count);
+  
 
+  // const deleteItem = (item: any) => {
+  //   const existingItem = bucketItems.find((bucketItem: DataMenuItems) => bucketItem.id === item.id);
+  //   if (existingItem) {
+  //     if (bucketValue <= 1) {
+  //       dispatch({ type: BucketActionTypes.MINUS_NUMBER, payload: existingItem });
+  //     } else {
+  //       dispatch({ type: BucketActionTypes.DELETE_FROM_BACKET, payload: item.id });
+  //     }
+  //   }
+  // };
 
 
   const deleteItem = (item: any) => {
+    const existingItem = bucketItems.find((bucketItem: DataMenuItems) => bucketItem.id === item.id );
+    console.log(existingItem)
+    if(existingItem){
 
-   
-    dispatch({ type: BucketActionTypes.MINUS_NUMBER, payload: item.id});
-    if (bucketValue <= 1) {
-      dispatch({ type: BucketActionTypes.DELETE_FROM_BACKET, payload: item.id });
+      dispatch({ type: BucketActionTypes.MINUS_NUMBER, payload: item});
+      if (bucketValue <= 1) {
+        dispatch({ type: BucketActionTypes.DELETE_FROM_BACKET, payload: item.id });
+      }
     }
-  };
+    };
 
 
   const addToBacket = (item: DataMenuItems) => {
-    const existingItem = bucketItems.find((bucketItem: DataMenuItems) => bucketItem.id === item.id && bucketItems);
+    const existingItem = bucketItems.find((bucketItem: DataMenuItems) => bucketItem.id === item.id );
+    console.log(existingItem)
     if (existingItem) {
-        dispatch({ type: BucketActionTypes.ADD_NUMBER, payload: item.id });
+        dispatch({ type: BucketActionTypes.ADD_NUMBER, payload: existingItem.count++});
     }else{
 
       dispatch({ type: BucketActionTypes.ADD_TO_BACKET, payload: item });
@@ -36,8 +51,6 @@ const ModalBacket = () => {
       
     
 };
-
-
 
 
   return (
@@ -50,7 +63,7 @@ const ModalBacket = () => {
           <img className={style.modalItemImg} src={item.image} alt="Avatar" />
           <p className={style.first_nameContainer}>{item.name}</p>
           <button className={style.deleteBtn} onClick={() => deleteItem(item)}>-</button>
-          <div className={style.bucketValue}>{bucketValue}</div>
+          <div className={style.bucketValue}>{item.count}</div>
           <button className={style.deleteBtn} onClick={() => addToBacket(item)}>+</button>
         
         </div>
