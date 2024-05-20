@@ -18,8 +18,10 @@ const ModalBacket = () => {
     const existingItem = bucketItems.find((bucketItem: DataMenuItems) => bucketItem.id === item.id );
     // console.log(existingItem)
     if(existingItem){
-      dispatch({ type: BucketActionTypes.MINUS_NUMBER, payload: existingItem.count--});
-      if (existingItem.count <= 1) {
+      
+        dispatch({ type: BucketActionTypes.MINUS_NUMBER, payload: existingItem.count--});
+      
+      if (existingItem.count < 1) {
         dispatch({ type: BucketActionTypes.DELETE_FROM_BACKET, payload: item.id });
       }
     }
@@ -29,8 +31,11 @@ const ModalBacket = () => {
   const addToBacket = (item: DataMenuItems) => {
     const existingItem = bucketItems.find((bucketItem: DataMenuItems) => bucketItem.id === item.id );
     // console.log(existingItem)
+ 
+
+ 
     if (existingItem) {
-        dispatch({ type: BucketActionTypes.ADD_NUMBER, payload: existingItem.count++});
+      dispatch({ type: BucketActionTypes.ADD_NUMBER, payload: existingItem.count++});
     }else{
 
       dispatch({ type: BucketActionTypes.ADD_TO_BACKET, payload: item });
@@ -39,7 +44,12 @@ const ModalBacket = () => {
     
 };
 
+useEffect(() => {
 
+  console.log(bucketItems)
+  console.log(bucketValue)
+}
+  ,[bucketValue, bucketItems])
 
 
 let atributes = bucketItems.map((item: DataMenuItems) => item.price)
@@ -77,9 +87,9 @@ const totalPos = () => {
         </div>
       ))}
       {bucketItems.length <= 0 ? 'Bucket is empty' :
-        <div>
-          <p>Total position: {totalPos()}</p>
-          <p>Price: {price() * totalPos()} $</p>
+        <div style={{display:'flex', flexFlow:'column', justifyContent:'center', alignItems:'center'}}>
+          <p style={{fontSize:'1.5vh', }}> Total position: {totalPos()}</p>
+          <p style={{fontSize:'2vh', }}>Price:<span style={{fontWeight:'bold'}}> {price() * totalPos()} $</span></p>
           <button className={style.buyBtn}>Checkout</button>
         </div>
       }

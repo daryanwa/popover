@@ -13,12 +13,12 @@ function MenuItemList() {
 
 
 
-    let [page, setPage] = useState(9)
+    let [page, setPage] = useState(6)
 
     const localItems = new DataMenuItems()
     let local = localItems.fetchLocalData()
     const dispatch = useDispatch()
-    const perPage = 9
+    const perPage = 6
   const addToBacket = (item:ILocalData ) => {
     if(localItems.id === item.id){
 

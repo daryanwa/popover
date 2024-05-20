@@ -102,7 +102,7 @@ export const bucketReducer = (state: IBucketState = defaultState, action: Bucket
                 ...state,
                 items: state.items.map(item =>
                     item.id === action.payload
-                        ? { ...item, count: item.count > 1 ? item.count - 1 : item.count }
+                        ? { ...item, count: item.count >= 1 ? item.count - 1 : item.count }
                         : item
                 )
             };
