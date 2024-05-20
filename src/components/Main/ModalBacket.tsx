@@ -62,10 +62,10 @@ const totalPos = () => {
   }
   return total
 }
-
-console.log(bucketValue)
-
-console.log(totalPos())
+useEffect(() => {
+  console.log('bucketItems', bucketItems);
+  console.log('bucketValue', bucketValue);
+}, [bucketItems, bucketValue]);
 
   return (
  
