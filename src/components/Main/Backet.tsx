@@ -10,7 +10,7 @@ const Backet = () => {
   const addToBucket = useSelector((state: any) => state.items);
   const openCloseModal = useSelector((state: any) => state.open);
   const myref = useRef<HTMLDivElement>(null);
-
+  
   useEffect(() => {
     const closeModalClick = (e: MouseEvent) => {
       if (myref.current && !myref.current.contains(e.target as Node)) {
@@ -30,6 +30,14 @@ const Backet = () => {
     }
     dispatch({ type: BucketActionTypes.OPEN_MODAL });
   };
+  const sumItem = () => {
+    let sum = 0
+    let a = addToBucket.map((item:any) => item.count)
+    for(let item of a){
+      sum += item
+    }
+    return sum
+  }
 
   return (
     <div>
@@ -46,7 +54,7 @@ const Backet = () => {
             <img className={style.basket} src={basket} alt="Basket" />
           ) : (
             <div>
-              <div className={style.backetNum}>{addToBucket.length}</div>
+              <div className={style.backetNum}>{sumItem()}</div>
               <img className={style.basket} src={basket} alt="Basket" />
             </div>
           )}

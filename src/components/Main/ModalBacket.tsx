@@ -39,10 +39,7 @@ const ModalBacket = () => {
     
 };
 
-useEffect(() => {
-  // console.log('bucketItems', bucketItems);
-  // console.log('bucketValue', bucketValue);
-}, [bucketItems, bucketValue]);
+
 
 
 let atributes = bucketItems.map((item: DataMenuItems) => item.price)
@@ -62,10 +59,6 @@ const totalPos = () => {
   }
   return total
 }
-useEffect(() => {
-  console.log('bucketItems', bucketItems);
-  console.log('bucketValue', bucketValue);
-}, [bucketItems, bucketValue]);
 
   return (
  
