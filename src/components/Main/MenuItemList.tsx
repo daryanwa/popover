@@ -50,7 +50,7 @@ function MenuItemList() {
         ))}
       </div>
       <div className={style.btnContainer}>
-        {page !== perPage + 1 && <button className={style.loadMore} onClick={() => loadMore()}>Load more</button>}
+        {page < data.length ?  <button className={style.loadMore} onClick={() => loadMore()}>Load more</button> : ''}
       </div>
      
     </div>
