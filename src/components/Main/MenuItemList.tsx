@@ -38,8 +38,8 @@ function MenuItemList() {
     <div>
         <div className={style.itemListContainer}>
         {local.slice(0, page).map((item:ILocalData) => (
-          <div  key={item.id}>
-            <div className={style.menuListContainer}>
+          <div  key={item.id} className={style.menuListContainer}>
+            <div className={style.menuListItem}>
                 <img className={style.itemImg} src={item.image} />
                 <p>{item.name}</p>
                 <p>{item.describe}</p>

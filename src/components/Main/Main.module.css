@@ -51,6 +51,7 @@
 
 .itemListContainer{
     margin-top: 5vh;
+    flex-wrap: wrap;
 
     justify-content: center;
     align-items: center;
@@ -69,10 +70,19 @@ width: 90vh;
 }
 
 .menuListContainer{
-    float: left;
+    flex-wrap: wrap;
 
-    width: 30vh;
+    float: left;
+    max-width: 30vh;
     flex-direction: column;
+}
+
+.menuListItem{
+    height: 35vh;
+    margin: 0 1vh 1vh 5vh;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
 }
 
 

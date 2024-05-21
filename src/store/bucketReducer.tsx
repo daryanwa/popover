@@ -84,7 +84,7 @@ export const bucketReducer = (state: IBucketState = defaultState, action: Bucket
         case BucketActionTypes.DELETE_FROM_BACKET: {
             return {
                 ...state,
-                items: state.items.filter((item) => item.id !== action.payload)
+                items: state.items.filter(item => item.id !== action.payload)
             };
         }
         case BucketActionTypes.ADD_NUMBER: {
@@ -102,7 +102,7 @@ export const bucketReducer = (state: IBucketState = defaultState, action: Bucket
                 ...state,
                 items: state.items.map(item =>
                     item.id === action.payload
-                        ? { ...item, count: item.count >= 1 ? item.count - 1 : item.count }
+                        ? { ...item, count: item.count > 1 ? item.count - 1 : 1 }
                         : item
                 )
             };
