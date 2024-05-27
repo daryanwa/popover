@@ -13,12 +13,16 @@ function MenuItemList() {
 
 
 
-    let [page, setPage] = useState(6)
-
+    const [page, setPage] = useState(6)
+    // const [selected, setSelected] = useState<string | null>(null)
     const localItems = new DataMenuItems()
     let local = localItems.fetchLocalData()
     const dispatch = useDispatch()
     const perPage = 6
+    const selectedCategory = useSelector((state: any ) => state.category.selectedCategory)
+
+
+    
   const addToBacket = (item:ILocalData ) => {
     if(localItems.id === item.id){
 
@@ -32,12 +36,18 @@ function MenuItemList() {
   const loadMore = () => {
     setPage(page + 9)
   }
+  
+  
+  
+  
+  const setCategory = selectedCategory ? data.filter(item => item.category === selectedCategory) : local
+
 
 
   return (
     <div>
         <div className={style.itemListContainer}>
-        {local.slice(0, page).map((item:ILocalData) => (
+        {setCategory.slice(0, perPage).map((item:ILocalData) => (
           <div  key={item.id} className={style.menuListContainer}>
             <div className={style.menuListItem}>
                 <img className={style.itemImg} src={item.image} />
@@ -50,6 +60,7 @@ function MenuItemList() {
         ))}
       </div>
       <div className={style.btnContainer}>
+ 
         {page < data.length ?  <button className={style.loadMore} onClick={() => loadMore()}>Load more</button> : ''}
       </div>
      

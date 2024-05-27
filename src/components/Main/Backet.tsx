@@ -7,8 +7,8 @@ import { BucketActionTypes } from '../../store/bucketReducer';
 
 const Backet = () => {
   const dispatch = useDispatch();
-  const addToBucket = useSelector((state: any) => state.items);
-  const openCloseModal = useSelector((state: any) => state.open);
+  const addToBucket = useSelector((state: any) => state.bucket.items);
+  const openCloseModal = useSelector((state: any) => state.bucket.open);
   const myref = useRef<HTMLDivElement>(null);
   
   useEffect(() => {

@@ -6,8 +6,8 @@ import { DataMenuItems } from '../../models/Backet';
 
 const ModalBacket = () => {
   const dispatch = useDispatch();
-  const bucketItems = useSelector((state: any) => state.items);
-  const bucketValue = useSelector((state: any) => state.items.reduce((acc: number, item: DataMenuItems) => acc + item.count, 0));
+  const bucketItems = useSelector((state: any) => state.bucket.items);
+  const bucketValue = useSelector((state: any) => state.bucket.items.reduce((acc: number, item: DataMenuItems) => acc + item.count, 0));
 
   const deleteItem = (item: DataMenuItems) => {
     if (item.count > 1) {
@@ -29,6 +29,7 @@ const ModalBacket = () => {
   useEffect(() => {
     console.log(bucketItems);
     console.log(bucketValue);
+    
   }, [bucketValue, bucketItems]);
 
   const price = () => {
