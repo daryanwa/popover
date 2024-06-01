@@ -1,31 +1,24 @@
-import React, { useRef } from 'react'
-import FooterComponent from '../components/Footer/FooterComponent'
-import HeaderComponent from '../components/Header/HeaderComponent'
-import StartComponent from '../components/sectionstart/StartComponent'
-import MainComponent from '../components/Main/MainComponent'
-
-
+import React, { useRef } from "react";
+import FooterComponent from "../components/Footer/FooterComponent";
+import HeaderComponent from "../components/Header/HeaderComponent";
+import StartComponent from "../components/sectionstart/StartComponent";
+import MainComponent from "../components/Main/MainComponent";
 
 function Home() {
-
-  let mainRef = useRef(null)
-
   return (
     <div>
-        <section>
-          <HeaderComponent />
-        </section>
-
-        <StartComponent />
-        <section id="main-section">
-           <MainComponent />
-        </section>
-        <section  id='contact-section'>
-          <FooterComponent />
-        </section>
- 
+      <section>
+        <HeaderComponent />
+      </section>
+      <StartComponent />
+      <section id="main-section">
+        <MainComponent />
+      </section>
+      <section id="contact-section">
+        <FooterComponent />
+      </section>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
